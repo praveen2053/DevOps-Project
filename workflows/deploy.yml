@@ -1,0 +1,29 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main  # triggers when you push to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js (if your site uses it)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'   # Change as needed
+
+    - name: Install Dependencies
+      run: npm install   # Skip if your project doesn't need it
+
+    - name: Build Project
+      run: npm run build   # Skip if no build needed (static sites)
+
+    - name: Deploy
+      run: echo "Deployment command here!" 
+      # (we'll replace this later based on where you're deploying)
